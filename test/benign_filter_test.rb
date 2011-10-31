@@ -30,7 +30,7 @@ class BasicProfanityFilterTest < Test::Unit::TestCase
   def profane_post(opts={})
     Post.new({:title => 'A Fucking Title', :body => "This is some f-u-c-k-i-n-g shitty-post by a fucking user"}.merge(opts))
   end
-  
+
   def test_it_should_filter_specified_fields
     p = profane_post
     p.save
@@ -41,14 +41,14 @@ class BasicProfanityFilterTest < Test::Unit::TestCase
     assert_equal 'This is some @#$% @#$%-post by a @#$% user', p.body_clean
     assert_equal 'This is some f-u-c-k-i-n-g shitty-post by a fucking user', p.body_original
   end
-  
+
   def test_it_should_handle_nil_fields_bug_9
     p = Post.new({:title => nil, :body => nil})
     p.save
     assert_equal nil, p.title
     assert_equal nil, p.body
   end
-  
+
   def test_it_should_handle_blank_fields_bug_9
     p = Post.new({:title => "", :body => ""})
     p.save
@@ -59,11 +59,11 @@ end
 
 class DictionaryProfanityFilterTest < Test::Unit::TestCase
   include DictionaryPostHelper
-  
+
   def profane_post(opts={})
     Post.new({:title => 'A Fucking Title', :body => "This is some f-u-c-k-i-n-g shitty-post by a fucking user"}.merge(opts))
   end
-  
+
   def test_it_should_filter_specified_fields
     p = profane_post
     p.save
@@ -74,14 +74,14 @@ class DictionaryProfanityFilterTest < Test::Unit::TestCase
     assert_equal 'This is some f*ck*ng sh*tty-post by a f*ck*ng user', p.body_clean
     assert_equal 'This is some f-u-c-k-i-n-g shitty-post by a fucking user', p.body_original
   end
-  
+
   def test_it_should_handle_nil_fields_bug_9
     p = Post.new({:title => nil, :body => nil})
     p.save
     assert_equal nil, p.title
     assert_equal nil, p.body
   end
-  
+
   def test_it_should_handle_blank_fields_bug_9
     p = Post.new({:title => "", :body => ""})
     p.save
@@ -92,11 +92,11 @@ end
 
 class VowelsProfanityFilterTest < Test::Unit::TestCase
   include VowelsPostHelper
-  
+
   def profane_post(opts={})
     Post.new({:title => 'A Fucking Title', :body => "This is some f-u-c-k-i-n-g shitty-post by a fucking user"}.merge(opts))
   end
-  
+
   def test_it_should_filter_specified_fields
     p = profane_post
     p.save
@@ -107,14 +107,14 @@ class VowelsProfanityFilterTest < Test::Unit::TestCase
     assert_equal 'This is some f*ck*ng sh*tty-post by a f*ck*ng user', p.body_clean
     assert_equal 'This is some f-u-c-k-i-n-g shitty-post by a fucking user', p.body_original
   end
-  
+
   def test_it_should_handle_nil_fields_bug_9
     p = Post.new({:title => nil, :body => nil})
     p.save
     assert_equal nil, p.title
     assert_equal nil, p.body
   end
-  
+
   def test_it_should_handle_blank_fields_bug_9
     p = Post.new({:title => "", :body => ""})
     p.save
@@ -125,11 +125,11 @@ end
 
 class HollowProfanityFilterTest < Test::Unit::TestCase
   include HollowPostHelper
-  
+
   def profane_post(opts={})
     Post.new({:title => 'A Fucking Title', :body => "This is some f-u-c-k-i-n-g shitty-post by a fucking user"}.merge(opts))
   end
-  
+
   def test_it_should_filter_specified_fields
     p = profane_post
     p.save
@@ -140,14 +140,14 @@ class HollowProfanityFilterTest < Test::Unit::TestCase
     assert_equal 'This is some f*****g s****y-post by a f*****g user', p.body_clean
     assert_equal 'This is some f-u-c-k-i-n-g shitty-post by a fucking user', p.body_original
   end
-  
+
   def test_it_should_handle_nil_fields_bug_9
     p = Post.new({:title => nil, :body => nil})
     p.save
     assert_equal nil, p.title
     assert_equal nil, p.body
   end
-  
+
   def test_it_should_handle_blank_fields_bug_9
     p = Post.new({:title => "", :body => ""})
     p.save
